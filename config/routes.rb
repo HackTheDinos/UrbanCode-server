@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
+  namespace :api do
+    namespace :v1 do
+      resources :sessions, only: [:create, :destroy]
+    end
+  end
+
   
 #               Prefix Verb   URI Pattern                                    Controller#Action
 #     user_submissions GET    /users/:user_id/submissions(.:format)          submissions#index

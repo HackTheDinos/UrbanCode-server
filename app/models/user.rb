@@ -24,4 +24,7 @@ class User < ActiveRecord::Base
     end while self.class.exists?(auth_token: auth_token)
   end
 
+  def as_json(options = {})
+    super(options.merge({ except: [:password_hash] }))
+  end
 end
