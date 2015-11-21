@@ -1,7 +1,7 @@
 class MiscellaneousController < ApplicationController
 
   def index
-    
+    @submissions = Submission.all
   end
 
   private

@@ -8,14 +8,16 @@
 Submission.delete_all
 User.delete_all
 
-User.create([
+users = User.create([
   {
     username: 'malina',
-    password: 'password'
+    password: 'password',
+    is_admin: true
   },
   {
     username: 'gerard',
-    password: 'password'
+    password: 'password',
+    is_admin: true
   }
 ])
 
@@ -23,15 +25,17 @@ Submission.create([
   {
     date: '(2015, November, 1)',
     status: Submission.statuses[:undetermined],
+    photo: File.new("#{Rails.root}/app/assets/images/10a_N.jpg"),
     description: 'Found interesting fossil-like rock',
     location: 'Prospect Park, Brooklyn',
-    user_id:  1
+    user_id: users[0].id
   },
   {
     date: '(2015, November, 10)',
     status: Submission.statuses[:undetermined],
+    photo: File.new("#{Rails.root}/app/assets/images/12a_Y.jpg"),
     description: 'Found this lumpy rock in my backyard',
     location: 'Flatbush, Brooklyn',
-    user_id: 2
+    user_id: users[1].id
   }
 ])

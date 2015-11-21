@@ -6,4 +6,12 @@
     <%= link_to 'Login', login_path %>
   <% end %>
   <%= link_to 'Signup', signup_path %>
+
+  <% @submissions.each do |submission| %>
+    <%= submission.date %>
+    <%= submission.status %>
+    <%= image_tag submission.photo(:medium) %>
+    <%= submission.description %>
+    <%= submission.location %>
+  <% end %>
 </div>
