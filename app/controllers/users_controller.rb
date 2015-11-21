@@ -5,16 +5,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    @user.password = params[:password]
-    @user.save
-    session[:user_id] = @user.id
+    user = User.create(user_params)
+    session[:user_id] = user.id
+
+    sign_in user
     redirect_to '/'
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :username, :password)
+    params.require(:user).permit(:username, :password)
   end
 
 end

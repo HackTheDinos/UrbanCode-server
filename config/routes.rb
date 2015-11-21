@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :users
 
-  resources :users do
-    resources :submissions
-  end
+  # resources :users do
+  #   resources :submissions
+  # end
 
   get '/', to: 'miscellaneous#index'
   get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
 
   
 #               Prefix Verb   URI Pattern                                    Controller#Action
