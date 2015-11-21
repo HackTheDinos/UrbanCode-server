@@ -14,24 +14,24 @@ submissions = Submission.create([
     status: Submission.statuses[:undetermined],
     description: 'Found interesting fossil-like rock',
     location: 'Prospect Park, Brooklyn',
-    user_id: 1
+    user_id:  1
   },
   {
     date: '(2015, November, 10)',
     status: Submission.statuses[:undetermined],
     description: 'Found this lumpy rock in my backyard',
     location: 'Flatbush, Brooklyn',
-    user_id: 1
+    user_id: 2
   }
 ])
 
 users = User.create([
   {
     username: 'malina',
-    password_hash: password 
+    password: 'password' 
   },
   {
     username: 'gerard',
-    password_hash: password
+    password: 'password'
   }
 ])
