@@ -14,6 +14,9 @@
             <p>
               <%= @submission.description %>
             </p>
+            <p class="right aligned">
+              Submitted by <%= @submission.user.username %>
+            </p>
             <% if !@submission.response.empty? %>
               <div class="ui yellow message">
                 <h5>
