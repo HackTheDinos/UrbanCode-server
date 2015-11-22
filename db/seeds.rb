@@ -37,5 +37,13 @@ Submission.create([
     description: 'Found this lumpy rock in my backyard',
     location: 'Flatbush, Brooklyn',
     user_id: users[1].id
+  },
+  {
+    date: '(2015, November, 15)',
+    status: Submission.statuses[:undetermined],
+    photo: File.new("#{Rails.root}/app/assets/images/13a_Y.jpg"),
+    description: 'During my morning walk, I tripped on this potential gem of a fossil!',
+    location: 'Brooklyn Bridge Park',
+    user_id: users[0].id
   }
 ])

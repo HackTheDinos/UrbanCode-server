@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     puts user
     if user && user.password == params[:user][:password]
       sign_in user
-
       redirect_to '/'
     else
       redirect_to '/'
