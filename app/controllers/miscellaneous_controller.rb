@@ -2,7 +2,7 @@ class MiscellaneousController < ApplicationController
 
   def index
     case(params[:type])
-    when 'non_fossils'
+    when 'not_fossil'
       @submissions = Submission.not_fossil
     when 'undetermined'
       @submissions = current_user.is_admin ? Submission.undetermined : Submission.fossil

@@ -19,8 +19,9 @@ class SubmissionsController < ApplicationController
 
   def destroy
     submission = Submission.find(params[:id])
+    fossil_status = submission.status
     submission.destroy
-    redirect_to :back
+    redirect_to "/?type=#{fossil_status}"
   end
 
   private
