@@ -1,12 +1,4 @@
 <div id="homepage-container">
-  <div id="logo">Helix</div>
-  <% if user_signed_in? %>
-    <%= link_to 'Logout', logout_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Login', login_path %>
-    <%= link_to 'Signup', signup_path %>
-  <% end %>
-
   <% if !current_user || !current_user.is_admin %>
 
     <div id="fossil-container">Fossils:
@@ -32,7 +24,7 @@
     <div id="undetermined-container">
     <% if @undetermined.empty? %>
       <p>You have no more submissions to review!</p>
-    <% else %> 
+    <% else %>
       Potential Fossils to Review:
     <% end %>
       <% @undetermined.each do |tbd| %>

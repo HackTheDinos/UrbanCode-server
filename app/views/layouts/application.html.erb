@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Helix</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Helix</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="ui fixed menu inverted">
+      <div class="item">
+        <a href="/" class="brand">
+          <img src="<%= image_url('helix.png') %>" alt="">
+          <span class="brand-name">Helix</span>
+        </a>
+      </div>
 
-<%= yield %>
+      <div class="right menu">
+          <% if user_signed_in? %>
+            <div class="item">
+              <%= link_to 'Logout', logout_path, method: :delete %>
+            </div>
+          <% else %>
+            <div class="item">
+              <%= link_to 'Login', login_path %>
+            </div>
+            <div class="item">
+              <%= link_to 'Signup', signup_path %>
+            </div>
+          <% end %>
+      </div>
+    </div>
 
-</body>
+    <%= yield %>
+
+  </body>
 </html>

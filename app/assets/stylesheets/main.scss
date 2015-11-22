@@ -1,0 +1,31 @@
+body {
+  margin-top: 70px;
+}
+
+.fixed.menu {
+
+  .item {
+    padding: 0;
+
+    a {
+      display: block;
+      line-height: 100%;
+      padding: 13px 16px;
+    }
+  }
+}
+
+.brand {
+
+  .brand-name {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+
+  img {
+    height: 35px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+}
+
