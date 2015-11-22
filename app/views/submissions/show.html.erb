@@ -17,7 +17,7 @@
             <p class="right aligned">
               Submitted by <%= @submission.user.username %>
             </p>
-            <% if !@submission.response.empty? %>
+            <% if @submission.response && !@submission.response.empty? %>
               <div class="ui yellow message">
                 <h5>
                   From the experts
