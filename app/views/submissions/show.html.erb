@@ -1,0 +1,14 @@
+<h3>View Item</h3>
+
+<%= image_tag @submission.photo(:medium) %>
+Date found: <%= @submission.date.strftime("%b %-d, %Y") %>
+Description: <%= @submission.description %>
+Location: <%= @submission.location %>
+<% if @submission.response %> 
+  From the experts: <%= @submission.response %>
+<% end %>
+<% if current_user && current_user.is_admin %>
+  <%= link_to 'Edit', edit_user_submission_path(user_id: @submission.user_id, id: @submission.id) %>
+<% end %>
+<%= link_to 'Home', '/' %>
+

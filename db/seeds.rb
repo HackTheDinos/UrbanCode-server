@@ -28,6 +28,7 @@ Submission.create([
     photo: File.new("#{Rails.root}/app/assets/images/10a_N.jpg"),
     description: 'Found interesting fossil-like rock',
     location: 'Prospect Park, Brooklyn',
+    response: 'Very unique find in the park, but not a fossil due to its coloration.',
     user_id: users[0].id
   },
   {
@@ -36,6 +37,7 @@ Submission.create([
     photo: File.new("#{Rails.root}/app/assets/images/12a_Y.jpg"),
     description: 'Found this lumpy rock in my backyard',
     location: 'Flatbush, Brooklyn',
+    response: 'Exciting! This is indeed a fossil as evident in the texture.',
     user_id: users[1].id
   },
   {
