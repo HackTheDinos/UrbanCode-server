@@ -1,15 +1,51 @@
-<h3>View Item</h3>
+<div class="ui row">
+  <div class="ui eight wide centered column">
+    <div class="ui items">
+      <div class="item">
+        <a class="ui image">
+          <%= image_tag @submission.photo(:medium) %>
+        </a>
+        <div class="content">
+          <div class="header">
+            <%= @submission.location %> (<%= @submission.date.strftime("%b %-d, %Y") %>)
+          </div>
 
-<%= image_tag @submission.photo(:medium) %>
-Date found: <%= @submission.date.strftime("%b %-d, %Y") %>
-Description: <%= @submission.description %>
-Location: <%= @submission.location %>
-<% if @submission.response %> 
-  From the experts: <%= @submission.response %>
-<% end %>
-<% if current_user && current_user.is_admin %>
-  <%= link_to 'Edit', edit_user_submission_path(user_id: @submission.user_id, id: @submission.id) %>
-  <%= link_to 'Delete', user_submission_path(user_id: @submission.user_id, id: @submission.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
-<% end %>
-<%= link_to 'Home', '/' %>
+          <div class="description">
+            <p>
+              <%= @submission.description %>
+            </p>
+            <% if !@submission.response.empty? %>
+              <div class="ui yellow message">
+                <h5>
+                  From the experts
+                </h5>
+                <p>
+                  <%= @submission.response %>
+                </p>
+              </div>
+            <% end %>
+          </div>
 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui center aligned row">
+  <div class="ui sixteen wide column">
+    <% if current_user && current_user.is_admin %>
+      <%= link_to 'Edit', edit_user_submission_path(user_id: @submission.user_id, id: @submission.id), class: 'ui orange button' %>
+      <%= link_to 'Delete', user_submission_path(user_id: @submission.user_id, id: @submission.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'}, class: 'ui red button' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="ui modal">
+  <div class="content">
+    <%= image_tag @submission.photo, class: 'ui image' %>
+  </div>
+  <div class="header">
+    <%= link_to 'View original', @submission.photo.url, target: '_blank' %>
+  </div>
+</div>

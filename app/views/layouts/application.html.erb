@@ -14,6 +14,24 @@
           <span class="brand-name">Helix</span>
         </a>
       </div>
+      <div class="item">
+        <a href="/">
+          Fossils
+        </a>
+      </div>
+      <div class="item">
+        <a href="/?type=non_fossils">
+          Non-Fossils
+        </a>
+      </div>
+
+      <% if current_user && current_user.is_admin %>
+        <div class="item">
+          <a href="/?type=undetermined">
+            Undetermined
+          </a>
+        </div>
+      <% end %>
 
       <div class="right menu">
           <% if user_signed_in? %>
@@ -31,7 +49,9 @@
       </div>
     </div>
 
-    <%= yield %>
+    <div class="ui sixteen column grid">
+      <%= yield %>
+    </div>
 
   </body>
 </html>

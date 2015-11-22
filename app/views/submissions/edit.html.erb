@@ -1,36 +1,57 @@
-<h3>Review Submission</h3>
+<div class="ui row">
+  <div class="ui eight wide centered column">
+    <div class="ui items">
+      <div class="item">
+        <a class="ui image">
+          <%= image_tag @submission.photo(:medium) %>
+        </a>
+        <div class="content">
+          <div class="header">
+            <%= @submission.location %> (<%= @submission.date.strftime("%b %-d, %Y") %>)
+          </div>
 
-<%= form_for @undetermined, url: user_submission_path do |f| %>
+          <div class="description">
+            <p>
+              <%= @submission.description %>
+            </p>
+          </div>
 
-  <%= image_tag @undetermined.photo(:medium) %>
-
-  <div id="date">
-    <% f.label :date %><br>
-    <% f.text_field :date %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div id="status">
-    <% f.label :status %><br>
-    <%= f.select(:status, Submission.statuses.keys) %>
+<div class="ui row">
+  <div class="ui eight wide centered column">
+    <%= form_for @submission, url: user_submission_path, html: {class: 'ui form'} do |f| %>
+
+      <div class="inline fields">
+          <%= f.label :status %>
+          <div class="field">
+          <%= f.select(:status, Submission.statuses.keys) %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :response, class: 'left aligned' %>
+        <%= f.text_area :response %>
+      </div>
+
+      <div class="center aligned">
+        <%= f.submit 'Save', class: 'ui teal button' %>
+        <%= link_to 'Delete', user_submission_path(user_id: @submission.user_id, id: @submission.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'}, class: 'ui red button' %>
+      </div>
+
+    <% end %>
   </div>
+</div>
 
-  <div id="description">
-    <%= f.label :description %><br>
-    <%= f.label :description, @undetermined.description %>
+<div class="ui modal">
+  <div class="content">
+    <%= image_tag @submission.photo, class: 'ui image' %>
   </div>
-
-  <div id="location">
-    <%= f.label :location %><br>
-    <%= f.label :location, @undetermined.location %>
+  <div class="header">
+    <%= link_to 'View original', @submission.photo.url, target: '_blank' %>
   </div>
-
-  <div id="response">
-    <%= f.label :response %><br>
-    <%= f.text_area :response %>
-  </div>
-
-  <%= f.submit 'Submit' %>
-
-<% end %> 
-
-<%= link_to 'Home', '/' %>
+</div>

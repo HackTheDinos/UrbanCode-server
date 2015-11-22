@@ -17,8 +17,7 @@ class SessionsController < ApplicationController
   def destroy
     user = User.find(current_user['id'])
     sign_out user
-
-    redirect_to '/'
+    redirect_to :back
   end
 
 end

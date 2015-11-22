@@ -1,46 +1,25 @@
-<div id="homepage-container">
-
-  <% if current_user && current_user.is_admin %>
-    <div id="undetermined-container">
-    <% if @undetermined.empty? %>
-      <p>You have no more submissions to review!</p>
-    <% else %>
-      Potential Fossils to Review:
-    <% end %>
-      <% @undetermined.each do |tbd| %>
-        <%= tbd.date.strftime("%b %-d, %Y") %>
-        <%= image_tag tbd.photo(:thumb) %>
-        <%= tbd.description %>
-        <%= link_to 'View', user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
-        <%= link_to 'Edit', edit_user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
-        <%= link_to 'Delete', user_submission_path(user_id: tbd.user_id, id: tbd.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
+<div class="ui row">
+  <div class="ui fourteen wide centered column">
+    <div class="ui three cards">
+      <% @submissions.each do |submission| %>
+        <div class="ui centered teal card">
+          <div class="image">
+            <%= image_tag submission.photo(:medium), class: 'image' %>
+          </div>
+          <div class="center aligned content">
+            <div class="header aligned center">
+              <%= submission.location %>
+            </div>
+            <div class="meta">
+              <%= link_to 'View', user_submission_path(user_id: submission.user_id, id: submission.id), class: 'ui teal small button' %>
+              <% if current_user && current_user.is_admin %>
+                <%= link_to 'Edit', edit_user_submission_path(user_id: submission.user_id, id: submission.id), class: 'ui orange small button' %>
+                <%= link_to 'Delete', user_submission_path(user_id: submission.user_id, id: submission.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'}, class: 'ui red small button' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
-    <%= link_to 'Admin Rights', users_path, method: :get %>
-  <% end %>
-
-  <div id="fossil-container">Fossils:
-    <% @fossils.each do |fossil| %>
-      <%= image_tag fossil.photo(:thumb) %>
-      <%= fossil.description %>
-      <%= fossil.location %>
-      <%= link_to 'View', user_submission_path(user_id: fossil.user_id, id: fossil.id) %>
-      <% if current_user && current_user.is_admin %>
-        <%= link_to 'Delete', user_submission_path(user_id: fossil.user_id, id: fossil.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
-      <% end %>
-    <% end %>
   </div>
-
-  <div id="not_fossil-container">Not Fossils:
-    <% @not_fossils.each do |not_fossil| %>
-      <%= image_tag not_fossil.photo(:thumb) %>
-      <%= not_fossil.description %>
-      <%= not_fossil.location %>
-      <%= link_to 'View', user_submission_path(user_id: not_fossil.user_id, id: not_fossil.id) %>
-      <% if current_user && current_user.is_admin %>
-        <%= link_to 'Delete', user_submission_path(user_id: not_fossil.user_id, id: not_fossil.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
-      <% end %>
-    <% end %>
-  </div>
-
 </div>
