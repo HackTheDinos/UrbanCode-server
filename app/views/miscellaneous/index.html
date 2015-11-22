@@ -1,10 +1,18 @@
 <div class="ui row">
   <div class="ui fourteen wide centered column">
+    <h1>
+      <% if @type == :not_fossil %> 
+        Non Fossils
+      <% elsif @type == :fossil %>
+        Fossils
+      <% else %>
+        To Be Determined
+      <% end %> 
+    </h1>
     <div class="ui three cards">
       <% @submissions.each do |submission| %>
         <div class="ui centered teal card">
           <div class="image" style="background-image: url(<%= submission.photo(:medium) %>)">
-            
           </div>
           <div class="center aligned content">
             <div class="header aligned center">
