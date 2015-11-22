@@ -7,11 +7,38 @@
   <% end %>
   <%= link_to 'Signup', signup_path %>
 
-  <% @submissions.each do |submission| %>
-    <%= submission.date %>
-    <%= submission.status %>
-    <%= image_tag submission.photo(:medium) %>
-    <%= submission.description %>
-    <%= submission.location %>
+  <% if !current_user || current_user.is_admin == false %>
+    <div id="fossil-container">Fossils:
+      <% @fossils.each do |fossil| %>
+        <%= fossil.date %>
+        <%= fossil.status %>
+        <%= image_tag fossil.photo(:medium) %>
+        <%= fossil.description %>
+        <%= fossil.location %>
+      <% end %>
+    </div>
+
+    <div id="nonfossil-container">Not Fossils:
+      <% @not_fossils.each do |nonfossil| %>
+        <%= nonfossil.date %>
+        <%= nonfossil.status %>
+        <%= image_tag nonfossil.photo(:medium) %>
+        <%= nonfossil.description %>
+        <%= nonfossil.location %>
+      <% end %>
+    </div>
   <% end %>
+
+  <% if current_user && current_user.is_admin %>
+    <div id="undetermined-container">Undetermined:
+      <% @undetermined.each do |tbd| %>
+        <%= tbd.date %>
+        <%= tbd.status %>
+        <%= image_tag tbd.photo(:medium) %>
+        <%= tbd.description %>
+        <%= tbd.location %>
+      <% end %>
+    </div>
+  <% end %>
+
 </div>

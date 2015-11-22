@@ -24,7 +24,7 @@ users = User.create([
 Submission.create([
   {
     date: '(2015, November, 1)',
-    status: Submission.statuses[:undetermined],
+    status: Submission.statuses[:not_fossil],
     photo: File.new("#{Rails.root}/app/assets/images/10a_N.jpg"),
     description: 'Found interesting fossil-like rock',
     location: 'Prospect Park, Brooklyn',
@@ -32,7 +32,7 @@ Submission.create([
   },
   {
     date: '(2015, November, 10)',
-    status: Submission.statuses[:undetermined],
+    status: Submission.statuses[:fossil],
     photo: File.new("#{Rails.root}/app/assets/images/12a_Y.jpg"),
     description: 'Found this lumpy rock in my backyard',
     location: 'Flatbush, Brooklyn',

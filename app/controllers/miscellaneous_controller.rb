@@ -1,7 +1,11 @@
 class MiscellaneousController < ApplicationController
 
   def index
-    @submissions = Submission.all
+    @fossils = Submission.fossil
+    @not_fossils = Submission.not_fossil
+    if current_user && current_user.is_admin
+       @undetermined = Submission.undetermined
+    end
   end
 
   private
