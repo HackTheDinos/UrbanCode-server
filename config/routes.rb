@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     resources :submissions
   end
 
+  resources :users do
+    get 'activate'
+    put 'activate'
+  end
+
   get '/', to: 'miscellaneous#index'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -19,8 +24,9 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
     end
   end
+end
 
-#         Prefix Verb   URI Pattern                                              Controller#Action
+#      Prefix Verb   URI Pattern                                    Controller#Action
 #         new_user_session GET    /users/sign_in(.:format)                       devise/sessions#new
 #             user_session POST   /users/sign_in(.:format)                       devise/sessions#create
 #     destroy_user_session DELETE /users/sign_out(.:format)                      devise/sessions#destroy
@@ -52,12 +58,23 @@ Rails.application.routes.draw do
 #                          PATCH  /users/:id(.:format)                           users#update
 #                          PUT    /users/:id(.:format)                           users#update
 #                          DELETE /users/:id(.:format)                           users#destroy
+#            user_activate GET    /users/:user_id/activate(.:format)             users#activate
+#                          PUT    /users/:user_id/activate(.:format)             users#activate
+#                          GET    /users(.:format)                               users#index
+#                          POST   /users(.:format)                               users#create
+#                          GET    /users/new(.:format)                           users#new
+#                          GET    /users/:id/edit(.:format)                      users#edit
+#                          GET    /users/:id(.:format)                           users#show
+#                          PATCH  /users/:id(.:format)                           users#update
+#                          PUT    /users/:id(.:format)                           users#update
+#                          DELETE /users/:id(.:format)                           users#destroy
 #                          GET    /                                              miscellaneous#index
 #                    login GET    /login(.:format)                               sessions#new
 #                          POST   /login(.:format)                               sessions#create
 #                   logout DELETE /logout(.:format)                              sessions#destroy
 #                   signup GET    /signup(.:format)                              users#new
 #                          POST   /signup(.:format)                              users#create
+#             api_v1_users POST   /api/v1/users(.:format)                        api/v1/users#create
+#       api_v1_submissions POST   /api/v1/submissions(.:format)                  api/v1/submissions#create
 #          api_v1_sessions POST   /api/v1/sessions(.:format)                     api/v1/sessions#create
-
-end
+#           api_v1_session DELETE /api/v1/sessions/:id(.:format)                 api/v1/sessions#destroy

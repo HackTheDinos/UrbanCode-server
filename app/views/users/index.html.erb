@@ -1,0 +1,12 @@
+<h3>View All Users</h3>
+
+<% @users.each do |user| %>
+  
+  <div id='user-container'>
+    <%= user.created_at.strftime("%b %-d, %Y") %>
+    <%= user.username %>
+    <%= user.is_admin %>
+    <%= link_to 'Approve', user_activate_path(user_id: user.id) %>
+  </div>
+
+<% end %>

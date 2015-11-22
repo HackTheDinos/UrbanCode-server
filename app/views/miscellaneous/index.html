@@ -4,10 +4,11 @@
     <%= link_to 'Logout', logout_path, method: :delete %>
   <% else %>
     <%= link_to 'Login', login_path %>
+    <%= link_to 'Signup', signup_path %>
   <% end %>
-  <%= link_to 'Signup', signup_path %>
 
-  <% if !current_user || current_user.is_admin == false %>
+  <% if !current_user || !current_user.is_admin %>
+
     <div id="fossil-container">Fossils:
       <% @fossils.each do |fossil| %>
         <%= image_tag fossil.photo(:thumb) %>
@@ -28,15 +29,21 @@
   <% end %>
 
   <% if current_user && current_user.is_admin %>
-    <div id="undetermined-container">Undetermined:
+    <div id="undetermined-container">
+    <% if @undetermined.empty? %>
+      <p>You have no more submissions to review!</p>
+    <% else %> 
+      Potential Fossils to Review:
+    <% end %>
       <% @undetermined.each do |tbd| %>
-        <%= tbd.date %>
+        <%= tbd.date.strftime("%b %-d, %Y") %>
         <%= image_tag tbd.photo(:thumb) %>
         <%= tbd.description %>
         <%= link_to 'View', user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
         <%= link_to 'Edit', edit_user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
       <% end %>
     </div>
+    <%= link_to 'Admin Rights', users_path, method: :get %>
   <% end %>
 
 </div>

@@ -39,4 +39,10 @@ class User < ActiveRecord::Base
   def email_changed?
     false
   end
+
+  def activate_user
+    self.approved = 'true'
+    self.save
+  end
+
 end
