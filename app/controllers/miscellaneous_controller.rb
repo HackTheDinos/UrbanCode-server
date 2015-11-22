@@ -4,13 +4,13 @@ class MiscellaneousController < ApplicationController
     case(params[:type])
     when 'not_fossil'
       @submissions = Submission.not_fossil
+      @type = :not_fossil
     when 'undetermined'
       @submissions = current_user.is_admin ? Submission.undetermined : Submission.fossil
-      if (current_user.is_admin)
-      else
-      end
+      @type = :undetermined
     else
       @submissions = Submission.fossil
+      @type = :fossil
     end
   end
 
