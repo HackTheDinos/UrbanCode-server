@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  
+
 #               Prefix Verb   URI Pattern                                    Controller#Action
 #     user_submissions GET    /users/:user_id/submissions(.:format)          submissions#index
 #                      POST   /users/:user_id/submissions(.:format)          submissions#create

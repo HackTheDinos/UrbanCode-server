@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:user][:username])
     if user && user.password == params[:user][:password]
       sign_in user
+
       redirect_to '/'
     else
       redirect_to '/'
@@ -16,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     user = User.find(current_user['id'])
-    sign_out user 
+    sign_out user
 
     redirect_to '/'
   end
