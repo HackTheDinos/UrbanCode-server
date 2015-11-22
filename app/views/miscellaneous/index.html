@@ -7,27 +7,6 @@
     <%= link_to 'Signup', signup_path %>
   <% end %>
 
-  <% if !current_user || !current_user.is_admin %>
-
-    <div id="fossil-container">Fossils:
-      <% @fossils.each do |fossil| %>
-        <%= image_tag fossil.photo(:thumb) %>
-        <%= fossil.description %>
-        <%= fossil.location %>
-        <%= link_to 'View', user_submission_path(user_id: fossil.user_id, id: fossil.id) %>
-      <% end %>
-    </div>
-
-    <div id="not_fossil-container">Not Fossils:
-      <% @not_fossils.each do |not_fossil| %>
-        <%= image_tag not_fossil.photo(:thumb) %>
-        <%= not_fossil.description %>
-        <%= not_fossil.location %>
-        <%= link_to 'View', user_submission_path(user_id: not_fossil.user_id, id: not_fossil.id) %>
-      <% end %>
-    </div>
-  <% end %>
-
   <% if current_user && current_user.is_admin %>
     <div id="undetermined-container">
     <% if @undetermined.empty? %>
@@ -41,9 +20,34 @@
         <%= tbd.description %>
         <%= link_to 'View', user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
         <%= link_to 'Edit', edit_user_submission_path(user_id: tbd.user_id, id: tbd.id) %>
+        <%= link_to 'Delete', user_submission_path(user_id: tbd.user_id, id: tbd.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
       <% end %>
     </div>
     <%= link_to 'Admin Rights', users_path, method: :get %>
   <% end %>
+
+  <div id="fossil-container">Fossils:
+    <% @fossils.each do |fossil| %>
+      <%= image_tag fossil.photo(:thumb) %>
+      <%= fossil.description %>
+      <%= fossil.location %>
+      <%= link_to 'View', user_submission_path(user_id: fossil.user_id, id: fossil.id) %>
+      <% if current_user && current_user.is_admin %>
+        <%= link_to 'Delete', user_submission_path(user_id: fossil.user_id, id: fossil.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="not_fossil-container">Not Fossils:
+    <% @not_fossils.each do |not_fossil| %>
+      <%= image_tag not_fossil.photo(:thumb) %>
+      <%= not_fossil.description %>
+      <%= not_fossil.location %>
+      <%= link_to 'View', user_submission_path(user_id: not_fossil.user_id, id: not_fossil.id) %>
+      <% if current_user && current_user.is_admin %>
+        <%= link_to 'Delete', user_submission_path(user_id: not_fossil.user_id, id: not_fossil.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
+      <% end %>
+    <% end %>
+  </div>
 
 </div>

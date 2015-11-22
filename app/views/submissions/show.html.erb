@@ -9,6 +9,7 @@ Location: <%= @submission.location %>
 <% end %>
 <% if current_user && current_user.is_admin %>
   <%= link_to 'Edit', edit_user_submission_path(user_id: @submission.user_id, id: @submission.id) %>
+  <%= link_to 'Delete', user_submission_path(user_id: @submission.user_id, id: @submission.id), method: :delete, data: {confirm: 'Are you absolutely sure you would like to delete?'} %>
 <% end %>
 <%= link_to 'Home', '/' %>
 
