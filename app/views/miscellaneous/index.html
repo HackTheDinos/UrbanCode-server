@@ -3,8 +3,8 @@
     <div class="ui three cards">
       <% @submissions.each do |submission| %>
         <div class="ui centered teal card">
-          <div class="image">
-            <%= image_tag submission.photo(:medium), class: 'image' %>
+          <div class="image" style="background-image: url(<%= submission.photo(:medium) %>)">
+            
           </div>
           <div class="center aligned content">
             <div class="header aligned center">

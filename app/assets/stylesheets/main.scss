@@ -31,6 +31,13 @@ body {
 
 .card {
 
+  .image {
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 300px;
+  }
+
   .header {
     margin-bottom: 5px;
   }
@@ -42,4 +49,8 @@ body {
 
 .right.aligned {
   text-align: right; // effing semantic ui
+}
+
+.description p {
+  white-space: pre-line;
 }
